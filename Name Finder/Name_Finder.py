@@ -26,11 +26,25 @@ names = [
     "villamil",
     "cenas",
     "cacayuran",
-    "Manayaga"
+    "manayaga"
 ]
+
+input_mode = input('Press [E] to fill a list to be searched, press any other key to use default.\nEnter choice: ')
+
+if input_mode.lower() == 'e':
+    names.clear()
+
+    while (True):
+        name = input('Enter a name: ')
+
+        if name.lower() != 'exit':
+            names.append(name.lower())
+        else:
+            break
 
 # List that will hold the names of the names that were not found
 not_found = []
+print('\nEnter names to find in list')
 
 while (True):
     target = input('Enter name here: ')
