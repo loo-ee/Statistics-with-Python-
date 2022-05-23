@@ -41,13 +41,112 @@ def main():
     #             frequency_count[i] += 1
 
     #     lower_limit_clone += interval
+    method_of_dispersion = input('\nPress [1] for Mean\nPress [2] for Median\nPress [3] for Mode\nEnter choice: ')
 
-    mode = input('\nPress [1] for Long Method\nPress [2] for Coded Deviation\nEnter choice: ')
+    if method_of_dispersion == '1':
+        operation = input('\nPress [1] for Long Method\nPress [2] for Coded Deviation\nEnter choice: ')
 
-    if mode == '1':
-        long_method(set_labels, frequency_count, lower_limit, upper_limit, interval)
-    elif mode == '2':
-        coded_deviation(set_labels, frequency_count, lower_limit, upper_limit, interval)
+        if operation == '1':
+            long_method(set_labels, frequency_count, lower_limit, upper_limit, interval)
+        elif operation == '2':
+            coded_deviation(set_labels, frequency_count, lower_limit, upper_limit, interval)
+    elif method_of_dispersion == '2':
+        median(set_labels, frequency_count, lower_limit, interval)
+    elif method_of_dispersion == '3':
+        mode(set_labels, frequency_count, lower_limit, interval)
+
+
+def median(set_labels: list, frequency_count:list, lower_limit: int, interval: int):
+    lb_mc = 0
+    sum_of_f = 0
+    f_mc = 0
+    modal_class = 0
+    less_cf_perm = 0
+    less_cf_temp = 0
+    lower_limit_clone = lower_limit
+    highest_freq = frequency_count[0]
+
+    lb_list = []
+    less_cf_list = []
+
+    for i in range(0, len(frequency_count)):
+        lb = lower_limit_clone - 0.5
+        sum_of_f += frequency_count[i]
+        lower_limit_clone += interval
+        lb_list.append(lb)
+
+        less_cf_temp += frequency_count[i]
+        less_cf_list.append(less_cf_temp)
+
+        if frequency_count[i] > highest_freq:
+            modal_class = i
+            highest_freq = frequency_count[i]
+
+    f_mc = frequency_count[modal_class]
+    lb_mc = lb_list[modal_class]
+
+    if modal_class <= 0:
+        less_cf_perm = 0
+    else:
+        less_cf_perm = less_cf_list[modal_class - 1]
+
+    set_median = lb_mc + ((((sum_of_f /2 ) - less_cf_perm) / f_mc) * interval)
+
+     # Printing the final table
+    print(f'\nData\t\tFrequency\tlb\t<cf')
+
+    for i in range(len(set_labels)):
+        print(f'{set_labels[len(set_labels)-(i+1)]}\t{frequency_count[len(set_labels)-(i+1)]}', end='')
+        print(f'\t\t{lb_list[len(set_labels)-(i+1)]}\t{less_cf_list[len(set_labels)-(i+1)]}')
+
+    print(f'\nSum of f = {sum_of_f}')
+    print(f'Median = ' + '{:.2f}'.format(round(set_median, 2)))
+
+
+def mode(set_labels: list, frequency_count:list, lower_limit: int, interval: int):
+    lb_mo = 0
+    d1 = 0
+    d2 = 0
+    sum_of_f = 0
+    modal_class = 0
+    lower_limit_clone = lower_limit
+    highest_freq = frequency_count[0]
+
+    lb_list = []
+
+    for i in range(0, len(frequency_count)):
+        lb = lower_limit_clone - 0.5
+        sum_of_f += frequency_count[i]
+        lower_limit_clone += interval
+        lb_list.append(lb)
+
+        if frequency_count[i] > highest_freq:
+            modal_class = i
+            highest_freq = frequency_count[i]
+        
+    lb_mo = lb_list[modal_class]
+
+    if modal_class >= (len(frequency_count) -1):
+        d1 = frequency_count[modal_class] - 0
+    else:
+        d1 = (frequency_count[modal_class]) - (frequency_count[modal_class + 1])
+
+    if modal_class <= 0:
+        d2 = frequency_count[modal_class] - 0
+    else:
+        d2 = (frequency_count[modal_class]) - (frequency_count[modal_class - 1])
+
+    set_mode = lb_mo + (d1 / ((d1 + d2)) * interval)
+
+    # Printing the final table
+    print(f'\nData\t\tFrequency\tlb')
+
+    for i in range(len(set_labels)):
+        print(f'{set_labels[len(set_labels)-(i+1)]}\t{frequency_count[len(set_labels)-(i+1)]}', end='')
+        print(f'\t\t{lb_list[len(set_labels)-(i+1)]}')
+
+    print(f'\nSum of f = {sum_of_f}')
+    print(f'Mode = ' + '{:.2f}'.format(round(set_mode, 2)))
 
 
 def long_method(set_labels: list, frequency_count:list, lower_limit: int, upper_limit, interval: int):
