@@ -7,6 +7,7 @@ def main():
     set_labels = []
     frequency_count = []
     counter = 0
+    status = True
 
     interval = int(input('Enter interval for set: '))
     lower_limit = int(input('Enter a lower limit: '))
@@ -41,20 +42,38 @@ def main():
     #             frequency_count[i] += 1
 
     #     lower_limit_clone += interval
-    method_of_dispersion = input('\nPress [1] for Mean\nPress [2] for Median\nPress [3] for Mode\nEnter choice: ')
 
-    if method_of_dispersion == '1':
-        operation = input('\nPress [1] for Long Method\nPress [2] for Coded Deviation\nEnter choice: ')
+    while (True):
+        method_of_dispersion = input('\nPress [1] for Mean\nPress [2] for Median\nPress [3] for Mode\nEnter choice: ')
 
-        if operation == '1':
-            long_method(set_labels, frequency_count, lower_limit, upper_limit, interval)
-        elif operation == '2':
-            coded_deviation(set_labels, frequency_count, lower_limit, upper_limit, interval)
-    elif method_of_dispersion == '2':
-        median(set_labels, frequency_count, lower_limit, interval)
-    elif method_of_dispersion == '3':
-        mode(set_labels, frequency_count, lower_limit, interval)
+        if method_of_dispersion == '1':
+            mean_operation = input('\nPress [1] for Long Method\nPress [2] for Coded Deviation\nEnter choice: ')
 
+            if mean_operation == '1':
+                long_method(set_labels, frequency_count, lower_limit, upper_limit, interval)
+            elif mean_operation == '2':
+                coded_deviation(set_labels, frequency_count, lower_limit, upper_limit, interval)
+
+        elif method_of_dispersion == '2':
+            median(set_labels, frequency_count, lower_limit, interval)
+
+        elif method_of_dispersion == '3':
+            mode(set_labels, frequency_count, lower_limit, interval)
+
+        print('\nPress [1] to select another mode\nPress [2] to reset data input\nPress [3] to exit program')
+        user_repeat = input('\nEnter choice: ')
+
+        if user_repeat == '1':
+            pass
+        elif user_repeat == '2':
+            print(f'\n[INFO] Resetting data values...\n')
+            break
+        else:
+            print('\nThank you for using the program!')
+            status = False
+            break
+    
+    return status
 
 def median(set_labels: list, frequency_count:list, lower_limit: int, interval: int):
     lb_mc = 0
@@ -256,4 +275,8 @@ def coded_deviation(set_labels: list, frequency_count:list, lower_limit: int, up
 
  
 if __name__ == '__main__':
-    main()
+    while (True):
+        reset = main()
+
+        if reset == False:
+            break
