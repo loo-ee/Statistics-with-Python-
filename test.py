@@ -1,4 +1,8 @@
-# a = 23.235678
+string1 = "egg"
+string2 = "chicken"
 
-# print("{:.3f}".format(round(a, 3)))
+if string1 < string2:
+    print(string1)
+else:
+    print(string2)
 

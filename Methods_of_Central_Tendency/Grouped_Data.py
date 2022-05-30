@@ -1,4 +1,4 @@
-# Methods of Dispersion -> Mean of Grouped Data
+# Methods of Dispersion -> Finding Mean, Median, Mode of Grouped Data
 
 # from Measures_of_Dispersion import input_values 
 # # import above ^ is commented out because ot the section of code below also being commented out
