@@ -6,3 +6,4 @@ if age > 17:
 else:
     print(name + " is a minor")
 
+print("test")
