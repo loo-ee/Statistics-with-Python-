@@ -120,6 +120,9 @@ def median(set_labels: list, frequency_count:list, lower_limit: int, interval: i
 
     print(f'\nSum of f = {sum_of_f}')
     print(f'Median = ' + '{:.2f}'.format(round(set_median, 2)))
+    print(f'lb_mc = ' + '{:.2f}'.format(round(lb_mc, 2)))
+    print(f'<cf = {less_cf_perm}')
+    print(f'f_mc = {f_mc}')
 
 
 def mode(set_labels: list, frequency_count:list, lower_limit: int, interval: int):

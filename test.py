@@ -1,8 +1,8 @@
-string1 = "egg"
-string2 = "chicken"
+name = "jann"
+age = int(input('Enter age here: '))
 
-if string1 < string2:
-    print(string1)
+if age > 17:
+    print(name + " is not a minor")
 else:
-    print(string2)
+    print(name + " is a minor")
 
