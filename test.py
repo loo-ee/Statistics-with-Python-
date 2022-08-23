@@ -1,10 +1,2 @@
-name = "jann"
-age = int(input('Enter age here: '))
-
-if age > 17:
-    print(name + " is not a minor")
-else:
-    print(name + " is a minor")
-
-print("test")
-#test
+for i in range(1, 30):
+    print(f'{i}.')

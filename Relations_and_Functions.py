@@ -42,7 +42,7 @@ def user_defined_function_for_main(x: list, y: list):
             # answer = ((x_integers[element] - y_integers[index]) / 3)
             # answer = x_integers[element] + y_integers[index]
             # answer = float(y_integers[index] / x_integers[element])
-            answer = float((x_integers[element] - y_integers[index]) / 4)
+            answer = float((y_integers[element] / x_integers[index]))
             if answer % 1 == 0:
                 print(f'({x_integers[element]}, {y_integers[index]}), ', end='')
     print('}')
